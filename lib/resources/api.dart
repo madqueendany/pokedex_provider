@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 class PokeApi {
   Dio _dio = Dio();
 
-  // String _baseUrl = 'https://pokeapi.co/api/v2';
-  String _baseUrl = 'http://localhost/api/v2';
+  String _baseUrl = 'https://pokeapi.co/api/v2';
+  // String _baseUrl = 'http://localhost/api/v2';
 
   Future<dynamic> dispatch(String path,
       {String uri, Map<String, dynamic> params}) async {

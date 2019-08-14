@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+
 import 'package:pokedex_01/models/creature.dart';
 import 'package:pokedex_01/models/pokedex_list.dart';
 import 'package:pokedex_01/resources/api.dart';
 import 'package:pokedex_01/screens/pokedex/index.dart';
 import 'package:pokedex_01/shared/globals/constants.dart';
 import 'package:pokedex_01/shared/widgets/buttons/flat.dart';
-import 'package:provider/provider.dart';
+import 'package:pokedex_01/shared/widgets/placeholders/list_items.dart';
 
 class GridEntry extends StatelessWidget {
   final PokedexEntry entry;

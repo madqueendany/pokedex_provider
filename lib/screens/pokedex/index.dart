@@ -5,11 +5,13 @@ import 'package:provider/provider.dart';
 
 import 'package:pokedex_01/models/creature.dart';
 import 'package:pokedex_01/models/pokedex_list.dart';
+import 'package:pokedex_01/providers/pokedexlist.dart';
 import 'package:pokedex_01/resources/api.dart';
 import 'package:pokedex_01/screens/pokedex/entries/grid.dart';
 import 'package:pokedex_01/shared/globals/constants.dart';
 import 'package:pokedex_01/shared/theme/colors.dart';
 import 'package:pokedex_01/shared/widgets/buttons/leading.dart';
+import 'package:pokedex_01/shared/widgets/placeholders/list_items.dart';
 
 enum ViewStyle {
   grid,
@@ -27,28 +29,7 @@ class PageManager with ChangeNotifier {
   }
 }
 
-class PokedexListModel with ChangeNotifier {
-  final PokeApi api;
-  PokedexList _list;
 
-  List<Creature> _creatures = [];
-
-  PokedexListModel(this.api);
-
-  PokedexList get list => _list;
-
-  List<Creature> get creatures => _creatures;
-
-  Future<Null> getList() async {
-    dynamic res = await this.api.dispatch('pokemon/');
-
-    if (res != null) {
-      _list = PokedexList.fromJson(res);
-    }
-
-    notifyListeners();
-  }
-}
 
 class PokedexPage extends StatelessWidget {
   @override
@@ -269,111 +250,6 @@ class TypeLabel extends StatelessWidget {
             .textTheme
             .body2
             .copyWith(fontSize: 10.0, color: Colors.white),
-      ),
-    );
-  }
-}
-
-class PlaceholderListItem extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 120.0,
-      margin: EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.grey[300],
-      ),
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 120.0,
-                  height: 15.0,
-                  color: Colors.grey[200],
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  width: 80.0,
-                  height: 15.0,
-                  color: Colors.grey[200],
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  width: 80.0,
-                  height: 15.0,
-                  color: Colors.grey[200],
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: -13.0,
-            right: -8.0,
-            child: SvgPicture.asset(
-              'assets/svgs/pokeball.svg',
-              color: Colors.grey[100],
-              height: 80.0,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class PlaceholderGridItem extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.grey[300],
-      ),
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 120.0,
-                  height: 15.0,
-                  color: Colors.grey[200],
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  width: 80.0,
-                  height: 15.0,
-                  color: Colors.grey[200],
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  width: 80.0,
-                  height: 15.0,
-                  color: Colors.grey[200],
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: -13.0,
-            right: -8.0,
-            child: SvgPicture.asset(
-              'assets/svgs/pokeball.svg',
-              color: Colors.grey[100],
-              height: 80.0,
-            ),
-          )
-        ],
       ),
     );
   }

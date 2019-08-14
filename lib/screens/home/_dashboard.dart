@@ -91,6 +91,7 @@ class DashButtons extends StatelessWidget {
                 DashButton(
                   fillColor: Colors.red[300],
                   label: 'Moves',
+                  onPressed: () => Navigator.of(context).pushNamed('/moves'),
                 ),
                 DashButton(
                   fillColor: Colors.orange[300],
